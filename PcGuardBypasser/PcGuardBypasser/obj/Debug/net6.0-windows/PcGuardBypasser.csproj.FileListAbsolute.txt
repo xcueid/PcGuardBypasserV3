@@ -1,0 +1,16 @@
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\bin\Debug\net6.0-windows\PcGuardBypasser.exe
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\bin\Debug\net6.0-windows\PcGuardBypasser.deps.json
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\bin\Debug\net6.0-windows\PcGuardBypasser.runtimeconfig.json
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\bin\Debug\net6.0-windows\PcGuardBypasser.dll
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\bin\Debug\net6.0-windows\PcGuardBypasser.pdb
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.Form1.resources
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.csproj.GenerateResource.cache
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.AssemblyInfoInputs.cache
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.AssemblyInfo.cs
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.dll
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\refint\PcGuardBypasser.dll
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.pdb
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\PcGuardBypasser.genruntimeconfig.cache
+C:\Users\user\source\repos\PcGuardBypasser\PcGuardBypasser\obj\Debug\net6.0-windows\ref\PcGuardBypasser.dll
