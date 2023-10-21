@@ -2,66 +2,16 @@ using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using System.Windows.Forms; // Windows Forms¸¦ »ç¿ëÇÏ±â À§ÇØ Ãß°¡
+using System.Windows.Forms; // Windows Formsë¥¼ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ì¶”ê°€
 
 namespace PcGuardBypasser
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
-        [DllImport("kernel32.dll")]
-        static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
-
-        [DllImport("kernel32.dll")]
-        static extern uint SuspendThread(IntPtr hThread);
-
-        [DllImport("kernel32.dll")]
-        static extern int ResumeThread(IntPtr hThread);
-
-        [Flags]
-        public enum ThreadAccess : int
-        {
-            SUSPEND_RESUME = 0x0002
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.AppendText("Made By DevaAndSage" + Environment.NewLine);
-            string[] processNamesOrIds = { "iAgent", "iAgent32", "iService", "iWatcher" }; // ÇÁ·Î¼¼½º ÀÌ¸§ ¶Ç´Â ID ¸ñ·Ï
-
-            try
-            {
-                foreach (string processNameOrId in processNamesOrIds)
-                {
-                    // ÇÁ·Î¼¼½º¸¦ Ã£½À´Ï´Ù.
-                    Process targetProcess = GetProcessByNameOrId(processNameOrId);
-
-                    if (targetProcess != null)
-                    {
-                        // ÇÁ·Î¼¼½ºÀÇ ¸ğµç ½º·¹µå¸¦ ÀÏ½Ã Áß´ÜÇÕ´Ï´Ù.
-                        foreach (ProcessThread thread in targetProcess.Threads)
-                        {
-                            IntPtr threadHandle = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
-                            SuspendThread(threadHandle);
-                            CloseHandle(threadHandle);
-                        }
-
-                        textBox1.AppendText($"ÇÁ·Î¼¼½º {processNameOrId}¸¦ ¹«·ÂÈ­ ½ÃÄ×½À´Ï´Ù." + Environment.NewLine);
-                    }
-                    else
-                    {
-                        textBox1.AppendText($"ÇÁ·Î¼¼½º {processNameOrId}¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù." + Environment.NewLine);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                textBox1.AppendText($"¿À·ù: {ex.Message}" + Environment.NewLine);
-            }
-            textBox1.AppendText("PC°¡µå ¿ìÈ¸°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù." + Environment.NewLine);
+            
+            textBox1.AppendText("ë‹¥ì³ ìŠ¤í¬ë¦½íŠ¸ í‚¤ë””." + Environment.NewLine);
 
         }
 
@@ -76,7 +26,7 @@ namespace PcGuardBypasser
                 }
                 catch (ArgumentException)
                 {
-                    // ÁöÁ¤µÈ ID¿¡ ÇØ´çÇÏ´Â ÇÁ·Î¼¼½º°¡ ¾øÀ½
+                    // ì§€ì •ëœ IDì— í•´ë‹¹í•˜ëŠ” í”„ë¡œì„¸ìŠ¤ê°€ ì—†ìŒ
                     return null;
                 }
             }
@@ -87,31 +37,31 @@ namespace PcGuardBypasser
             }
         }
 
-        // ½º·¹µå ÇÚµéÀ» ´İ´Â ÇÔ¼ö
+        // ìŠ¤ë ˆë“œ í•¸ë“¤ì„ ë‹«ëŠ” í•¨ìˆ˜
         [DllImport("kernel32.dll")]
         static extern bool CloseHandle(IntPtr hObject);
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // ½ÃÀÛ ÇÁ·Î±×·¥¿¡ µî·ÏÇÒ ½ÇÇà ÆÄÀÏ °æ·Î¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+            // ì‹œì‘ í”„ë¡œê·¸ë¨ì— ë“±ë¡í•  ì‹¤í–‰ íŒŒì¼ ê²½ë¡œë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
             string executablePath = Application.ExecutablePath;
 
-            // ½ÃÀÛ ÇÁ·Î±×·¥ ·¹Áö½ºÆ®¸® Å°¸¦ ¿±´Ï´Ù.
+            // ì‹œì‘ í”„ë¡œê·¸ë¨ ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ì—½ë‹ˆë‹¤.
             RegistryKey startupKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
             try
             {
-                // ½ÃÀÛ ÇÁ·Î±×·¥ ·¹Áö½ºÆ®¸®¿¡ µî·ÏÇÕ´Ï´Ù.
+                // ì‹œì‘ í”„ë¡œê·¸ë¨ ë ˆì§€ìŠ¤íŠ¸ë¦¬ì— ë“±ë¡í•©ë‹ˆë‹¤.
                 startupKey.SetValue("MyApp", executablePath);
-                MessageBox.Show("ÇÁ·Î±×·¥ÀÌ ½ÃÀÛ ÇÁ·Î±×·¥¿¡ µî·ÏµÇ¾ú½À´Ï´Ù.");
+                MessageBox.Show("í”„ë¡œê·¸ë¨ì´ ì‹œì‘ í”„ë¡œê·¸ë¨ì— ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("½ÃÀÛ ÇÁ·Î±×·¥ µî·Ï¿¡ ½ÇÆĞÇß½À´Ï´Ù. ¿À·ù ¸Ş½ÃÁö: " + ex.Message);
+                MessageBox.Show("ì‹œì‘ í”„ë¡œê·¸ë¨ ë“±ë¡ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. ì˜¤ë¥˜ ë©”ì‹œì§€: " + ex.Message);
             }
             finally
             {
-                // ·¹Áö½ºÆ®¸® Å°¸¦ ´İ½À´Ï´Ù.
+                // ë ˆì§€ìŠ¤íŠ¸ë¦¬ í‚¤ë¥¼ ë‹«ìŠµë‹ˆë‹¤.
                 startupKey.Close();
             }
         }
